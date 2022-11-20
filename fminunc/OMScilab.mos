@@ -1,0 +1,15 @@
+// If required, make necessary changes to the PATH and software version before executing the following commands.
+SCIHOME_BIN := "C:/scilab-6.1.1/bin";
+SCIHOME_CORE_MODULE := "C:/scilab-6.1.1/modules/core/includes";
+SCIHOME_API_SCILAB_MODULE := "C:/scilab-6.1.1/modules/api_scilab/includes";
+SCIHOME_CALL_SCILAB_MODULE := "C:/scilab-6.1.1/modules/call_scilab/includes";
+setEnvironmentVar("PATH", getEnvironmentVar("PATH") + ";" + SCIHOME_BIN); getErrorString();
+setEnvironmentVar("PATH", getEnvironmentVar("PATH") + ";" + SCIHOME_CORE_MODULE); getErrorString();
+setEnvironmentVar("PATH", getEnvironmentVar("PATH") + ";" + SCIHOME_API_SCILAB_MODULE); getErrorString();
+setEnvironmentVar("PATH", getEnvironmentVar("PATH") + ";" + SCIHOME_CALL_SCILAB_MODULE); getErrorString();
+setCommandLineOptions({"+g=MetaModelica"}); getErrorString();
+system(getCompiler() + " -g -c call_scilab_from_c.c  -I\"" + SCIHOME_CALL_SCILAB_MODULE + "\" -I\"" + SCIHOME_API_SCILAB_MODULE + "\" -I\"" + SCIHOME_CORE_MODULE + "\" -L\"" + SCIHOME_BIN + "\" -lcall_scilab -lapi_scilab"); getErrorString();
+system("ar rcs libcall_scilab_from_c.a call_scilab_from_c.o"); getErrorString();
+loadFile("OMScilab.mo"); getErrorString();
+simulate(OMScilab, numberOfIntervals=1, stopTime=1.0); getErrorString();
+plot({results[1],results[2],results[3]});
