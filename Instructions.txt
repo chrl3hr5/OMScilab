@@ -1,0 +1,17 @@
+// OS: Windows 10
+// Scilab version: scilab-6.1.1
+// OpenModelica version: OpenModelica1.19.0-64bit
+// Tool used to execute the commands: MSYS2 MINGW64
+
+// Before executing the commands do the following:
+// 1) If required, make necessary changes to the PATH and software version in the "OMScilab.mo" and "OMScilab.mos" files.
+// 2) Add "sci_mem_alloc.h" file in the "includes" folder of the "core" module in the Scilab installation directory.
+// 3) Set the directory containing the required files as the working directory.
+
+// Run the following commands to add values to PATH (if required, make necessary changes to the PATH and software version before executing the following commands) -
+PATH="$PATH:/C/OpenModelica1.19.0-64bit/"
+PATH="$PATH:/C/OpenModelica1.19.0-64bit/bin"
+PATH="$PATH:/C/OpenModelica1.19.0-64bit/lib/omlibrary"
+
+// Run the main program -
+omc OMScilab.mos
